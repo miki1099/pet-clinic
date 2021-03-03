@@ -5,8 +5,6 @@ import com.example.petclinic.services.OwnerService;
 import com.example.petclinic.services.PetTypeService;
 import com.example.petclinic.services.SpecialtiesService;
 import com.example.petclinic.services.VetService;
-import com.example.petclinic.services.map.OwnerServiceMap;
-import com.example.petclinic.services.map.VetServiceMap;
 import lombok.AllArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -47,6 +45,7 @@ public class DataInitializer implements CommandLineRunner {
 
         Pet pet = new Pet();
         pet.setPetType(savedDogPetType);
+        pet.setOwner(owner1);
         pet.setBirthDate(LocalDate.now());
         pet.setName("Pet Name");
 
@@ -62,6 +61,7 @@ public class DataInitializer implements CommandLineRunner {
 
         Pet pet2 = new Pet();
         pet2.setPetType(savedCatPetType);
+        pet2.setOwner(owner2);
         pet2.setBirthDate(LocalDate.now());
         pet2.setName("Pet Name2");
 
