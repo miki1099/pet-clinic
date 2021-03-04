@@ -1,10 +1,7 @@
 package com.example.petclinic.bootstrap;
 
 import com.example.petclinic.model.*;
-import com.example.petclinic.services.OwnerService;
-import com.example.petclinic.services.PetTypeService;
-import com.example.petclinic.services.SpecialtiesService;
-import com.example.petclinic.services.VetService;
+import com.example.petclinic.services.*;
 import lombok.AllArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -19,6 +16,7 @@ public class DataInitializer implements CommandLineRunner {
     private final VetService vetService;
     private final PetTypeService petTypeService;
     private final SpecialtiesService specialtiesService;
+    private final VisitService visitService;
 
     @Override
     public void run(String... args) throws Exception {
@@ -67,6 +65,13 @@ public class DataInitializer implements CommandLineRunner {
 
         owner2.getPets().add(pet2);
         ownerService.save(owner2);
+
+        Visit catVisit= new Visit();
+        catVisit.setPet(pet2);
+        catVisit.setLocalDate(LocalDate.now());
+        catVisit.setDescription("Something happen");
+
+        visitService.save(catVisit);
 
         Specialty radiology = new Specialty();
         radiology.setDescription("Radiology");

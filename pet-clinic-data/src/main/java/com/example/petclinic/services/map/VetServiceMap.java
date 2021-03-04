@@ -5,11 +5,13 @@ import com.example.petclinic.model.Vet;
 import com.example.petclinic.services.SpecialtiesService;
 import com.example.petclinic.services.VetService;
 import lombok.AllArgsConstructor;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
 @Service
+@Profile("mapBasedService")
 @AllArgsConstructor
 public class VetServiceMap extends AbstractMapService<Vet,Long> implements VetService {
 
