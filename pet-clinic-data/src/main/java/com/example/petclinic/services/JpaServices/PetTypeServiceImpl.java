@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 @Service
@@ -45,5 +46,10 @@ public class PetTypeServiceImpl implements PetTypeService {
     @Override
     public void deleteByID(Long aLong) {
         petTypeRepository.deleteById(aLong);
+    }
+
+    @Override
+    public Optional<PetType> findFirstByName(String name) {
+        return petTypeRepository.findFirstByName(name);
     }
 }

@@ -6,6 +6,7 @@ import com.example.petclinic.services.PetTypeService;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
 import java.util.Set;
 
 @Service
@@ -35,5 +36,10 @@ public class PetTypeMapService extends AbstractMapService<PetType, Long> impleme
     @Override
     public PetType findById(Long id) {
         return super.findById(id);
+    }
+
+    @Override
+    public Optional<PetType> findFirstByName(String name) {
+        return Optional.empty();
     }
 }
