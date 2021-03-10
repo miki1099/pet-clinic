@@ -1,6 +1,7 @@
 package com.example.petclinic.model;
 
 import lombok.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -22,6 +23,7 @@ public class Pet extends BaseEntity{
     @JoinColumn(name = "type_id")
     private PetType petType;
     @Column(name = "birth_date")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate birthDate;
     @ManyToOne
     @JoinColumn(name = "owner_id")
@@ -36,7 +38,9 @@ public class Pet extends BaseEntity{
         this.petType = petType;
         this.owner = owner;
         this.birthDate = birthDate;
-        this.visits = visits;
+        if(visits != null) {
+            this.visits = visits;
+        }
     }
 
 
