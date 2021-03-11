@@ -41,6 +41,7 @@ class OwnerControllerTest {
     MockMvc mockMvc;
 
     Owner returnOwner1;
+    Owner returnOwner2;
 
     @BeforeEach
     void setUp() {
@@ -53,7 +54,7 @@ class OwnerControllerTest {
         returnOwner3.setId(3L);
         returnOwner3.setAddress("Gd1");
 
-        Owner returnOwner2 = new Owner();
+        returnOwner2 = new Owner();
         returnOwner2.setId(2L);
         returnOwner2.setAddress("GY2");
 
@@ -176,6 +177,18 @@ class OwnerControllerTest {
                 .andExpect(model().attributeExists("owner"));
 
         verify(ownerService).save(ArgumentMatchers.any());
+    }
+
+    @Test
+    void processFindFormEmptyReturnMany() throws Exception {
+        when(ownerService.findAllByLastNameLike(anyString()))
+                .thenReturn(Arrays.asList(returnOwner1, returnOwner2));
+
+        mockMvc.perform(get("/owners")
+                .param("lastName",""))
+                .andExpect(status().isOk())
+                .andExpect(view().name("owners/ownersList"))
+                .andExpect(model().attribute("selections", hasSize(2)));;
     }
 
 }
